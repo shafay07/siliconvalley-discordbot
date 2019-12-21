@@ -56,10 +56,4 @@ function getQuote(actor){
   } catch(err) {
     console.error(err)
   }
-
-
-
-
-
-
 }
