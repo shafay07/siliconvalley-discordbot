@@ -15,21 +15,32 @@ const prefix = ";";
 //listen to ready event for bot, executes when bot is ready
 bot.on('ready', () => {
   console.info(`logged in as ${bot.user.tag}!`);
+  bot.user.setActivity(';actors', {
+    type: 'LISTENING'
+  });
 });
 
 //listen to msg sent in by user
-bot.on('message', msg =>{
-  if(!msg.content.startsWith(prefix)) return; //stop if msg doesnt start with prefix
-  else {
+bot.on('message', msg => {
+  if (!msg.content.startsWith(prefix)) return; //stop if msg doesnt start with prefix
+  else if (msg.content === ';actors') {
+    console.log(';actors called');
+    // inside a command, event listener, etc.
+    msg.channel.send({embed: {
+      color: [255, 157, 115],
+      title: "List of actors:",
+      description: "everyone \n richard \n erlich \n dinesh \n gilfoyle \n jared \n bighead \n monica \n russ \n gavin \n peter \n jianyang \n laurie"
+    }});
+
+  } else {
     console.info(`${msg.content}`);
     const parsed = `${msg.content}`.split(';')[1]
     const quote = getQuote(parsed);
     console.log(quote);
-    if(quote){
+    if (quote) {
       msg.channel.send(quote);
-    }
-    else{
-      msg.channel.send('Cant even spell correactly you dumb fuck!');
+    } else {
+      msg.channel.send('❗️ A typo probably, try ";actors"');
     }
 
   }
@@ -37,9 +48,9 @@ bot.on('message', msg =>{
 
 
 //gets the random quote from the defined actor
-function getQuote(actor){
+function getQuote(actor) {
   console.log(actor);
-  const actor_json = './scraper/json_quotes/'+actor+'.json'
+  const actor_json = './scraper/json_quotes/' + actor + '.json'
   console.log(actor_json);
   //check if the actor quotes exists and get quotes
   try {
@@ -53,7 +64,7 @@ function getQuote(actor){
       const randQuote = quotes[randKey];
       return randQuote;
     }
-  } catch(err) {
+  } catch (err) {
     console.error(err)
   }
 }
