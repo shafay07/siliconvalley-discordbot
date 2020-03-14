@@ -4,10 +4,8 @@ const Discord = require('discord.js');
 const fs = require('fs')
 //bot object for Discord
 const bot = new Discord.Client();
-//gets the token from env defined
-const TOKEN = process.env.TOKEN;
 //login with Token given
-bot.login(TOKEN);
+bot.login(process.env.TOKEN);
 //prefix used in this bot
 const prefix = ";";
 
