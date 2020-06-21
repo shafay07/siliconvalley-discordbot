@@ -7,3 +7,7 @@
 Repo includes:
 - Python scraper, that generates json quotes for each actor
 - Node.js discord bot which makes use of json files to randomly pick a quote
+
+Quotes taken from http://siliconvalleyism.com/
+
+Add to your server: https://top.gg/bot/657643024616259594
