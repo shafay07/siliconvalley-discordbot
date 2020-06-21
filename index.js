@@ -1,9 +1,14 @@
 //requirements for bot config
 require('dotenv').config();
 const Discord = require('discord.js');
-const fs = require('fs')
 //bot object for Discord
 const bot = new Discord.Client();
+const fs = require('fs')
+const cheweyBotAnalyticsAPI = require("discord-bot-analytics")
+const customAnalytics = new cheweyBotAnalyticsAPI(process.env.CHEWEY, bot)
+
+
+
 //login with Token given
 bot.login(process.env.TOKEN);
 //prefix used in this bot
@@ -24,11 +29,13 @@ bot.on('message', msg => {
   else if (msg.content === ';actors') {
     console.log(';actors called');
     // inside a command, event listener, etc.
-    msg.channel.send({embed: {
-      color: [255, 157, 115],
-      title: "List of actors:",
-      description: "everyone \n richard \n erlich \n dinesh \n gilfoyle \n jared \n bighead \n monica \n russ \n gavin \n peter \n jianyang \n laurie"
-    }});
+    msg.channel.send({
+      embed: {
+        color: [255, 157, 115],
+        title: "List of actors:",
+        description: "everyone \n richard \n erlich \n dinesh \n gilfoyle \n jared \n bighead \n monica \n russ \n gavin \n peter \n jianyang \n laurie"
+      }
+    });
 
   } else {
     console.info(`${msg.content}`);
