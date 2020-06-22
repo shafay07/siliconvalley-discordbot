@@ -38,6 +38,7 @@ bot.on('message', msg => {
     });
 
   } else {
+    console.info(`${msg.content}`);
     const parsed = `${msg.content}`.split(';')[1]
     const quote = getQuote(parsed);
     if (quote) {
