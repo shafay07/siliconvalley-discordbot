@@ -38,10 +38,8 @@ bot.on('message', msg => {
     });
 
   } else {
-    console.info(`${msg.content}`);
     const parsed = `${msg.content}`.split(';')[1]
     const quote = getQuote(parsed);
-    console.log(quote);
     if (quote) {
       msg.channel.send(quote);
     } else {
@@ -54,15 +52,12 @@ bot.on('message', msg => {
 
 //gets the random quote from the defined actor
 function getQuote(actor) {
-  console.log(actor);
   const actor_json = './scraper/json_quotes/' + actor + '.json'
-  console.log(actor_json);
   //check if the actor quotes exists and get quotes
   try {
     if (fs.existsSync(actor_json)) {
       const content = fs.readFileSync(actor_json);
       const quotes = JSON.parse(content);
-      // console.log(quotes);
       const keys = Object.keys(quotes);
       const randIndex = Math.floor(Math.random() * keys.length);
       const randKey = keys[randIndex];
